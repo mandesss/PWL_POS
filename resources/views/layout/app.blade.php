@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
 @extends('adminlte::page')
 
 {{-- Extend and customize the browser title --}}
@@ -26,34 +17,34 @@
             @yield('content_header_title')
 
             @hasSection('content_header_subtitle')
-            <small class="text-dark">
-                <i class="fas fa-xs fa-angle-right text-muted"></i>
-                @yield('content_header_subtitle')
-            </small>
-        @endif
-    </h1>
-@endif
+                <small class="text-dark">
+                    <i class="fas fa-xs fa-angle-right text-muted"></i>
+                    @yield('content_header_subtitle')
+                </small>
+            @endif
+        </h1>
+    @endif
 @stop
 
 {{-- Rename section content to content_body --}}
 
 @section('content')
-@yield('content_body')
+    @yield('content_body')
 @stop
 
 
 {{-- Create a common footer --}}
 
 @section('footer')
-<div class="float-right">
-    Version: {{ config('app.version', '1.0.0') }}
-</div>
+    <div class="float-right">
+        Version: {{ config('app.version', '1.0.0') }}
+    </div>
 
-<strong>
-    <a href="{{ config('app.company_url', '#') }}">
-        {{ config('app.company_name', 'My company') }}
-    </a>
-</strong>
+    <strong>
+        <a href="{{ config('app.company_url', '#') }}">
+            {{ config('app.company_name', 'My company') }}
+        </a>
+    </strong>
 @stop
 
 
@@ -89,5 +80,3 @@
 </style>
 
 @endpush
-</body>
-</html>

@@ -24,9 +24,9 @@ class KategoriDataTable extends DataTable
     {
         $action = '
         <div class="d-flex">
-            <a href="../kategori/edit/{{$kategori_id}}" 
+            <a href="../public/kategori/edit/{{$kategori_id}}" 
             class="edit btn btn-warning btn-sm m-1">Edit</a>
-            <a href="../kategori/delete/{{$kategori_id}}" 
+            <a href="../public/kategori/delete/{{$kategori_id}}" 
             class="edit btn btn-danger btn-sm m-1">Delete</a>
         </div>
         ';

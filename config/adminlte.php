@@ -314,13 +314,23 @@ return [
         ['header' => 'Menu'],
         [
             'text' => 'User',
-            'url' => '/user',
-            'icon' => 'fas fa-fw fa-user',
+            'url' => 'user',
+            'icon' => 'fas fa-solid fa-user',
         ],
         [
-            'text' => 'Kategori',
-            'url' => '/kategori',
-            'icon' => 'fas fa-fw fa-list-ul',
+            'text' => 'M-User',
+            'url' => 'm_user',
+            'icon' => 'fas fa-solid fa-user',
+        ],
+        [
+            'text' => 'Level',
+            'url' => 'level/tambah',
+            'icon' => 'fas fa-regular fa-user-plus',
+        ],
+        [
+            'text' => 'Categories',
+            'url' => 'kategori',
+            'icon' => 'fas fa-solid fa-list',
         ],
     ],
 

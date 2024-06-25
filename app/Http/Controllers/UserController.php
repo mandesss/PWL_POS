@@ -76,14 +76,19 @@ class UserController extends Controller
             'username'  => 'required|string|min:3|unique:m_user,username',  // username harus diisi, berupa string, minimal 3 karakter, dan bernilai unik di tabel m_user kolom username
             'nama'      => 'required|string|max:100',                       // nama harus diisi, berupa string, dan maksimal 100 karakter
             'password'  => 'required|min:5',                                // password harus diisi dan minimal 5 karakter
-            'level_id'  => 'required|integer'                               // level_id harus diisi dan berupa
+            'level_id'  => 'required|integer',
+            'image'      => 'required|file|image|max:1000',                               // level_id harus diisi dan berupa
         ]);
 
+        $namaFile = 'IMG' . time() . '-' . $request->image->getClientOriginalName();
+        $path = $request->image->storeAs('public/user', $namaFile);
+        
         UserModel::create([
             'username'  => $request->username,
             'nama'      => $request->nama,
             'password'  => bcrypt($request->password),  // password dienkripsi sebelum disimpan
-            'level_id'  => $request->level_id
+            'level_id'  => $request->level_id,
+            'image'     => $namaFile
         ]);
 
         return redirect('/user')->with('success', 'Data user berhasil disimpan');
@@ -136,14 +141,21 @@ class UserController extends Controller
             'username'  => 'required|string|min:3|unique:m_user,username,'.$id.',user_id',
             'nama'      => 'required|string|max:100',   // nama harus diisi, berupa string, dan maksimal 100 karakter
             'password'  => 'nullable|min:5',            // password bisa diisi (minimal 5 karakter) dan bisa tidak diisi
-            'level_id'  => 'required|integer'           // level_id harus diisi dan berupa angka
+            'level_id'  => 'required|integer',           // level_id harus diisi dan berupa angka
+            'image'      => 'nullable|file|image|max:1000',
         ]);
+
+        if ($request->image) {
+            $namaFile = 'IMG' . time() . '-' . $request->image->getClientOriginalName();
+            $path = $request->image->storeAs('public/user', $namaFile);
+        }
 
         UserModel::find($id)->update([
             'username'  => $request->username,
             'nama'      => $request->nama,
             'password'  => $request->password ? bcrypt($request->password) : UserModel::find($id)->password,
-            'level_id'  => $request->level_id
+            'level_id'  => $request->level_id,
+            'image'     => $request->image ? $namaFile : basename(UserModel::find($id)->image)
         ]);
 
         return redirect('/user')->with('success', 'Data user berhasil dirubah');

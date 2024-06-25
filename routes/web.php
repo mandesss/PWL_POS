@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ManagerController;
@@ -24,9 +25,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/file-upload', [FileUploadController::class, 'fileUpload']);
+Route::post('/file-upload', [FileUploadController::class, 'prosesFileUpload']);
+
 
 Route::get('/level', [LevelController::class, 'index']);
 Route::get('/level/tambah', [LevelController::class, 'tambah']);
@@ -47,7 +51,7 @@ Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit']);
 Route::put('/kategori/{id}', [KategoriController::class, 'update']);
 Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete']);
 
-Route::resource('m_user', POSController::class); */
+Route::resource('m_user', POSController::class); 
 
 Route::get('/', [WelcomeController::class, 'index']);
 
